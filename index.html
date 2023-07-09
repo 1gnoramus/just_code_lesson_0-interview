@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>My Shapes</title>
+  </head>
+  <script>
+    function addShape(newShape) {
+      const contWithShapes = document.getElementById("contWithShapes");
+      const shape = document.createElement("div");
+      shape.classList.add(`${newShape}`);
+      contWithShapes.appendChild(shape);
+    }
+
+    function removeShape(newShape) {
+      const shape = document.querySelector(`.${newShape}`);
+      shape.remove();
+    }
+
+    function changeColor() {
+      const shape = document.querySelector(".circle");
+      shape.style.backgroundColor = "blue";
+    }
+
+    function resizeShape() {
+      const shape = document.querySelector(".circle");
+      const currentWidth = shape.offsetWidth;
+      const currentHeight = shape.offsetHeight;
+      shape.style.width = currentWidth + 20 + "px";
+      shape.style.height = currentHeight + 20 + "px";
+    }
+
+    function countShapes() {
+      const shapes = document.querySelectorAll(".circle, .rect");
+      const totalShapes = shapes.length;
+      console.log("Total shapes:", totalShapes);
+    }
+
+    function clearShapes() {
+      const contWithShapes = document.getElementById("contWithShapes");
+      contWithShapes.innerHTML = "";
+    }
+
+    function randomColor() {
+      const shape = document.querySelector(".circle");
+      const colors = ["red", "green", "blue", "yellow", "orange"];
+      const randomIndex = Math.floor(Math.random() * colors.length);
+      const randomColor = colors[randomIndex];
+      shape.style.backgroundColor = randomColor;
+    }
+  </script>
+  <body>
+    <div class="button-div" style="display: flex; justify-content: center">
+      <button onclick="addShape('circle')">Add Circle</button>
+      <button onclick="addShape('rect')">Add Rect</button>
+      <button onclick="removeShape('circle')">Remove Circle</button>
+      <button onclick="removeShape('rect')">Remove Rect</button>
+
+      <button onclick="clearShapes()">Clear Shapes</button>
+      <button onclick="countShapes()">Count Shapes</button>
+      <button onclick="resizeShape()">Resize Shape</button>
+      <button onclick="randomColor()">Random Color Circ</button>
+    </div>
+
+    <div class="contWithShapes" id="contWithShapes"></div>
+  </body>
+</html>
